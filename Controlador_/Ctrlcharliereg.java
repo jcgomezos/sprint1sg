@@ -177,11 +177,12 @@ public class Ctrlcharliereg implements ActionListener{
         
         
         if(e.getSource()==frm.btnBuscarv1){
-            cl.setNombre(frm.txtNombrev1.getText());
+            cl.setCelular(Integer.parseInt(frm.txtCelularv1.getText()));//cl.setNombre(frm.txtNombrev1.getText());
             
             
             if(modC.buscarC(cl)){
                 
+                frm.txtIdv1.setText(String.valueOf(cl.getId()));
                 frm.txtNombrev1.setText(cl.getNombre()); //para pasarlo a string ya que no se puede usar el tostring
                 frm.txtCelularv1.setText(String.valueOf(cl.getCelular()));
                 frm.txtDireccionv1.setText(cl.getDireccion());

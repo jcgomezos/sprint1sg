@@ -271,11 +271,11 @@ public class Consultascharlie extends Conexion{
         ResultSet rs = null;
         Connection con =  getConexion();
         
-        String sql = "SELECT * FROM cliente WHERE nombre=? ";
+        String sql = "SELECT * FROM cliente WHERE celular=? "; //"SELECT * FROM cliente WHERE nombre=? "
         
         try{
             ps=con.prepareStatement(sql);
-            ps.setString(1, c.getNombre());
+            ps.setInt(1, c.getCelular()); //ps.setString(1, c.getNombre());
             rs= ps.executeQuery(); //para que me regrese el resultado usamos ExecuteQuery
             
             //rs.next nos trae los resultados en caso de ser mas de una fila usar un while 
@@ -283,7 +283,7 @@ public class Consultascharlie extends Conexion{
                 //al obtener la fila estos valores los agregamos al modelo
                 c.setId(Integer.parseInt(rs.getString("id")));
                 c.setNombre(rs.getString("nombre"));
-                c.setCelular(Integer.parseInt(rs.getString("id")));//(rs.getInt("celular"));
+                c.setCelular(Integer.parseInt(rs.getString("celular")));//(rs.getInt("celular"));
                 c.setDireccion(rs.getString("direccion"));
                 
                 

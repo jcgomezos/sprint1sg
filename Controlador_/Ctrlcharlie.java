@@ -20,6 +20,7 @@ public class Ctrlcharlie implements ActionListener{
     private Ventana2 frm2;
     private Ventana3 frm3;
     public static double cuenta=0;
+    public static boolean flag=false;
     
     
     public Ctrlcharlie(ProductoC mod, Consultascharlie modC, Ventana2 frm2, Ventana3 frm3){
@@ -53,6 +54,7 @@ public class Ctrlcharlie implements ActionListener{
         //con manejo de excepciones
         
         if(e.getSource()==frm2.btnRegistrarv2){
+            flag=true;
             try{
                 mod.setCodigo(frm2.txtCodigov2.getText());
                 mod.setNombre(frm2.txtNombrev2.getText());
@@ -186,7 +188,19 @@ public class Ctrlcharlie implements ActionListener{
         }*/
         
         if(e.getSource()==frm2.btnPagarv2){
-            frm3.setVisible(true);   
+            
+            if(modC.buscar(mod) && flag==true){
+                
+                frm2.dispose();
+                frm3.setVisible(true);
+                //limpiarv1();
+                flag=false;
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Registra algún producto ");
+                limpiarv2();
+            }
+            //frm3.setVisible(true);   
         }
         
         /*if(e.getSource()==frm2.btnModificarv2){
