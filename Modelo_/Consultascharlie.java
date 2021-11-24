@@ -5,10 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-//
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 
 public class Consultascharlie extends Conexion{
