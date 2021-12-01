@@ -15,7 +15,6 @@ public class Consultascharlie extends Conexion{
         Connection con =  getConexion();
         
         String sql = "INSERT INTO compras (codigo, nombre, precio, cantidad) VALUES(?,?,?,?)";
-        
         try{
             ps=con.prepareStatement(sql);
             ps.setString(1, pro.getCodigo());
@@ -23,6 +22,16 @@ public class Consultascharlie extends Conexion{
             ps.setDouble(3, pro.getPrecio());
             ps.setInt(4, pro.getCantidad());
             ps.execute();
+            ps = con.prepareStatement
+            ("EXPLAIN ANALYZE INSERT INTO compras (codigo, nombre, precio, cantidad) VALUES(?,?,?,?)");
+            ps.setString(1, pro.getCodigo());
+            ps.setString(2, pro.getNombre());
+            ps.setDouble(3, pro.getPrecio());
+            ps.setInt(4, pro.getCantidad());
+            ResultSet res = ps.executeQuery();
+            while(res.next()){
+            System.out.println(res.getString("QUERY PLAN"));
+            }
             return true;
             
         }catch(SQLException e){
@@ -57,6 +66,17 @@ public class Consultascharlie extends Conexion{
             ps.setInt(4, pro.getCantidad());
             ps.setInt(5, pro.getId());
             ps.execute();
+            ps = con.prepareStatement
+            ("EXPLAIN ANALYZE UPDATE compras SET codigo=?, nombre=?, precio=?, cantidad=? WHERE id=? ");
+            ps.setString(1, pro.getCodigo());
+            ps.setString(2, pro.getNombre());
+            ps.setDouble(3, pro.getPrecio());
+            ps.setInt(4, pro.getCantidad());
+            ps.setInt(5, pro.getId());
+            ResultSet res = ps.executeQuery();
+            while(res.next()){
+            System.out.println(res.getString("QUERY PLAN"));
+            }
             return true;
             
         }catch(SQLException e){
@@ -86,6 +106,13 @@ public class Consultascharlie extends Conexion{
             ps=con.prepareStatement(sql);
             ps.setInt(1, pro.getId());
             ps.execute();
+            ps = con.prepareStatement
+            ("EXPLAIN ANALYZE DELETE FROM compras WHERE id=? ");
+            ps.setInt(1, pro.getId());
+            ResultSet res = ps.executeQuery();
+            while(res.next()){
+            System.out.println(res.getString("QUERY PLAN"));
+            }
             return true;
             
         }catch(SQLException e){
@@ -130,6 +157,14 @@ public class Consultascharlie extends Conexion{
                 pro.setPrecio(Double.parseDouble(rs.getString("precio")));
                 pro.setCantidad(Integer.parseInt(rs.getString("cantidad")));
                 
+                ps = con.prepareStatement
+                ("EXPLAIN ANALYZE SELECT * FROM compras WHERE codigo=? ");
+                ps.setString(1, pro.getCodigo());
+                ResultSet res = ps.executeQuery();
+                while(res.next()){
+                System.out.println(res.getString("QUERY PLAN"));
+                }
+
                 return true;
   
             }  
@@ -178,6 +213,15 @@ public class Consultascharlie extends Conexion{
             ps.setInt(2, c.getCelular());
             ps.setString(3, c.getDireccion());
             ps.execute();
+            ps = con.prepareStatement
+            ("EXPLAIN ANALYZE INSERT INTO cliente ( nombre, celular, direccion) VALUES(?,?,?) ");
+            ps.setString(1, c.getNombre());
+            ps.setInt(2, c.getCelular());
+            ps.setString(3, c.getDireccion());
+            ResultSet res = ps.executeQuery();
+            while(res.next()){
+            System.out.println(res.getString("QUERY PLAN"));
+            }
             return true;
             
         }catch(SQLException e){
@@ -213,6 +257,16 @@ public class Consultascharlie extends Conexion{
             ps.setString(3, c.getDireccion());
             ps.setInt(4, c.getId());
             ps.execute();
+            ps = con.prepareStatement
+            ("EXPLAIN ANALYZE UPDATE cliente SET nombre=?, celular=?, direccion=? WHERE id=? ");
+            ps.setString(1, c.getNombre());
+            ps.setInt(2, c.getCelular());
+            ps.setString(3, c.getDireccion());
+            ps.setInt(4, c.getId());
+            ResultSet res = ps.executeQuery();
+            while(res.next()){
+            System.out.println(res.getString("QUERY PLAN"));
+            }
             return true;
             
         }catch(SQLException e){
@@ -242,6 +296,13 @@ public class Consultascharlie extends Conexion{
             ps=con.prepareStatement(sql);
             ps.setInt(1, c.getId());
             ps.execute();
+            ps = con.prepareStatement
+            ("EXPLAIN ANALYZE DELETE FROM cliente WHERE id=? ");
+            ps.setInt(1, c.getId());
+            ResultSet res = ps.executeQuery();
+            while(res.next()){
+            System.out.println(res.getString("QUERY PLAN"));
+            }
             return true;
             
         }catch(SQLException e){
@@ -282,7 +343,14 @@ public class Consultascharlie extends Conexion{
                 c.setCelular(Integer.parseInt(rs.getString("celular")));//(rs.getInt("celular"));
                 c.setDireccion(rs.getString("direccion"));
                 
-                
+                ps = con.prepareStatement
+                ("EXPLAIN ANALYZE SELECT * FROM cliente WHERE celular=? ");
+                ps.setInt(1, c.getId());
+                ResultSet res = ps.executeQuery();
+                while(res.next()){
+                System.out.println(res.getString("QUERY PLAN"));
+                }
+
                 return true;
   
             }  

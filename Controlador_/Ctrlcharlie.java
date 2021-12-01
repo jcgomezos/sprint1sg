@@ -65,13 +65,9 @@ public class Ctrlcharlie implements ActionListener{
                   //operacion y envio de info a ventana 3
                   double valor = mod.getPrecio()*mod.getCantidad();
                   //double cuenta; //= valor;
-                  cuenta +=valor; //cuenta; 
-                  //frm3.txtDetallesv3.setText("SSSSSSSSS");
+                  cuenta +=valor; //cuenta;
                   frm3.txtDetallesv3.setText("===========" + String.format("%.2f",cuenta));//.append(mod.getNombre() + " " +String.valueOf(mod.getPrecio()) );
-                  //frm3.txtDetallesv3.setText("\n");
-                  //frm3.txtDetallesv3.setText("_____________ \n");
-                  //frm3.txtDetallesv3.setText(String.format("%.2f",cuenta));
-                  //frm3.txtDetallesv3.setText("\n");
+                  
                   limpiarv2();
                 }else{
                   JOptionPane.showMessageDialog(null, "Error al Guardar");
@@ -80,14 +76,14 @@ public class Ctrlcharlie implements ActionListener{
                   
             
             }catch(Exception ex){
-                try (FileWriter fw = new FileWriter ("C:\\Users\\ADMIN\\Desktop\\excepciones\\manejoexcp.txt", true);){         
+                try (FileWriter fw = new FileWriter ("C:\\excepciones\\excepciones.txt", true);){         
                     PrintWriter pw = new PrintWriter (fw);
                     pw.println("Error OJO registro_producto "+ex.getMessage());
                     //System.out.println("Error OJO registro");
                 } catch (Exception ex1) {
                     //
                 }
-                System.out.println("OJO");
+                System.out.println("OJO registro");
             }
         }
         
@@ -108,7 +104,7 @@ public class Ctrlcharlie implements ActionListener{
                   limpiarv2();
                 }
             }catch(Exception ex){
-                try (FileWriter fw = new FileWriter ("C:\\Users\\ADMIN\\Desktop\\excepciones\\manejoexcp.txt", true);){         
+                try (FileWriter fw = new FileWriter ("C:\\excepciones\\excepciones.txt", true);){         
                     PrintWriter pw = new PrintWriter (fw);
                     pw.println("Error OJO al modificar producto "+ex.getMessage());
                     //System.out.println("Error OJO registro");
@@ -122,21 +118,10 @@ public class Ctrlcharlie implements ActionListener{
         if(e.getSource()==frm2.btnEliminarv2){
             try{
                 mod.setId(Integer.parseInt(frm2.txtIdv2.getText()));
-                //double valor = mod.getPrecio()*mod.getCantidad();
-                //cuenta -= valor;
-            
                 if(modC.eliminar(mod)){
                   double valor = mod.getPrecio()*mod.getCantidad();
                   cuenta -= valor;
                   frm3.txtDetallesv3.setText("===========" + String.format("%.2f",cuenta));
-                
-                /*cuenta -= valor; 
-                frm3.txtDetallesv3.setText("\n");
-                frm3.txtDetallesv3.setText(" - " + mod.getNombre()+"  " +String.valueOf(mod.getPrecio()) );
-                frm3.txtDetallesv3.setText("\n");
-                frm3.txtDetallesv3.setText("_____________ \n");
-                frm3.txtDetallesv3.setText(String.format("%.2f",cuenta));
-                frm3.txtDetallesv3.setText("\n");*/
                 
                   JOptionPane.showMessageDialog(null, "Registro Eliminado");
                   limpiarv2();
@@ -147,10 +132,9 @@ public class Ctrlcharlie implements ActionListener{
                   
             
             }catch(Exception ex){
-                try (FileWriter fw = new FileWriter ("C:\\Users\\ADMIN\\Desktop\\excepciones\\manejoexcp.txt", true);){         
+                try (FileWriter fw = new FileWriter ("C:\\excepciones\\excepciones.txt", true);){         
                     PrintWriter pw = new PrintWriter (fw);
                     pw.println("Error OJO al eliminar producto "+ex.getMessage());
-                    //System.out.println("Error OJO registro");
                 } catch (Exception ex1) {
                     //
                 }
@@ -161,30 +145,6 @@ public class Ctrlcharlie implements ActionListener{
         // ventana dos
         
         
-        /*if(e.getSource()==frm2.btnRegistrarv2){
-            mod.setCodigo(frm2.txtCodigov2.getText());
-            mod.setNombre(frm2.txtNombrev2.getText());
-            mod.setPrecio(Double.parseDouble(frm2.txtPreciov2.getText()));
-            mod.setCantidad(Integer.parseInt(frm2.txtCantidadv2.getText()));
-            
-            if(modC.registrar(mod)){
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
-                //operacion y envio de info a ventana 3
-                double valor = mod.getPrecio()*mod.getCantidad();
-                //double cuenta; //= valor;
-                cuenta +=valor; //cuenta; 
-                //frm3.txtDetallesv3.setText("SSSSSSSSS");
-                frm3.txtDetallesv3.setText("===========" + String.format("%.2f",cuenta));//.append(mod.getNombre() + " " +String.valueOf(mod.getPrecio()) );
-                //frm3.txtDetallesv3.setText("\n");
-                //frm3.txtDetallesv3.setText("_____________ \n");
-                //frm3.txtDetallesv3.setText(String.format("%.2f",cuenta));
-                //frm3.txtDetallesv3.setText("\n");
-                limpiarv2();
-            }else{
-                JOptionPane.showMessageDialog(null, "Error al Guardar");
-                limpiarv2();
-            }
-        }*/
         
         if(e.getSource()==frm2.btnPagarv2){
             
@@ -192,59 +152,13 @@ public class Ctrlcharlie implements ActionListener{
                 
                 frm2.dispose();
                 frm3.setVisible(true);
-                //limpiarv1();
                 flag=false;
                 
             }else{
                 JOptionPane.showMessageDialog(null, "Registra algún producto ");
                 limpiarv2();
             }
-            //frm3.setVisible(true);   
         }
-        
-        /*if(e.getSource()==frm2.btnModificarv2){
-            mod.setId(Integer.parseInt(frm2.txtIdv2.getText()));
-            mod.setCodigo(frm2.txtCodigov2.getText());
-            mod.setNombre(frm2.txtNombrev2.getText());
-            mod.setPrecio(Double.parseDouble(frm2.txtPreciov2.getText()));
-            mod.setCantidad(Integer.parseInt(frm2.txtCantidadv2.getText()));
-            
-            if(modC.modificar(mod)){
-                JOptionPane.showMessageDialog(null, "Registro Modificado");
-                limpiarv2();
-            }else{
-                JOptionPane.showMessageDialog(null, "Error al Modificar");
-                limpiarv2();
-            }
-        }*/
-        
-        
-        /*if(e.getSource()==frm2.btnEliminarv2){
-            mod.setId(Integer.parseInt(frm2.txtIdv2.getText()));
-            //double valor = mod.getPrecio()*mod.getCantidad();
-            //cuenta -= valor;
-            
-            if(modC.eliminar(mod)){
-                double valor = mod.getPrecio()*mod.getCantidad();
-                cuenta -= valor;
-                frm3.txtDetallesv3.setText("===========" + String.format("%.2f",cuenta));
-                
-                /*cuenta -= valor; 
-                frm3.txtDetallesv3.setText("\n");
-                frm3.txtDetallesv3.setText(" - " + mod.getNombre()+"  " +String.valueOf(mod.getPrecio()) );
-                frm3.txtDetallesv3.setText("\n");
-                frm3.txtDetallesv3.setText("_____________ \n");
-                frm3.txtDetallesv3.setText(String.format("%.2f",cuenta));
-                frm3.txtDetallesv3.setText("\n");*/
-                
-            /*    JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                limpiarv2();
-            }else{
-                JOptionPane.showMessageDialog(null, "Error al Eliminar");
-                limpiarv2();
-            }
-        }*/
-        
         
         
         if(e.getSource()==frm2.btnBuscarv2){
@@ -258,42 +172,6 @@ public class Ctrlcharlie implements ActionListener{
                 frm2.txtNombrev2.setText(mod.getNombre());
                 frm2.txtPreciov2.setText(String.valueOf(mod.getPrecio()));
                 frm2.txtCantidadv2.setText(String.valueOf(mod.getCantidad()));
-                //double valor = mod.getPrecio()*mod.getCantidad();
-                
-                /*if(e.getSource()==frm2.btnModificarv2){
-      
-                    /*cuenta -= valor; 
-                    frm3.txtDetallesv3.setText("\n");
-                    frm3.txtDetallesv3.setText(" - " + mod.getNombre()+"  " +String.valueOf(mod.getPrecio()) );
-                    frm3.txtDetallesv3.setText("\n");
-                    frm3.txtDetallesv3.setText("_____________ \n");
-                    frm3.txtDetallesv3.setText(String.format("%.2f",cuenta));
-                    frm3.txtDetallesv3.setText("\n");
-                    frm3.txtDetallesv3.setText("\n");
-                    frm3.txtDetallesv3.setText("\n");
-                    
-                    mod.setId(Integer.parseInt(frm2.txtIdv2.getText()));
-                    mod.setCodigo(frm2.txtCodigov2.getText());
-                    mod.setNombre(frm2.txtNombrev2.getText());
-                    mod.setPrecio(Double.parseDouble(frm2.txtPreciov2.getText()));
-                    mod.setCantidad(Integer.parseInt(frm2.txtCantidadv2.getText()));
-            
-                    if(modC.modificar(mod)){
-                      JOptionPane.showMessageDialog(null, "Registro Modificado");
-                      limpiarv2();
-                    }else{
-                      JOptionPane.showMessageDialog(null, "Error al Modificar");
-                      limpiarv2();
-                    }
-                    
-                    valor = mod.getPrecio()*mod.getCantidad();
-                    frm3.txtDetallesv3.setText(" actualizado " + mod.getNombre()+"  " +String.valueOf(mod.getPrecio()) );
-                    frm3.txtDetallesv3.setText("\n");
-                    frm3.txtDetallesv3.setText("_____________ \n");
-                    cuenta += valor;
-                    frm3.txtDetallesv3.setText(String.format("%.2f",cuenta));
-                    frm3.txtDetallesv3.setText("\n");
-                }*/
                 
             }else{
                 JOptionPane.showMessageDialog(null, "No se encontró el registro");
