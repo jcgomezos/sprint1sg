@@ -8,10 +8,14 @@ import Vista_.Ventana2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
+<<<<<<< HEAD
 //import java.io.IOException;
 import java.io.PrintWriter;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
+=======
+import java.io.PrintWriter;
+>>>>>>> c3db1eac003350036af52402d3231968464ed375
 import javax.swing.JOptionPane;
 
 public class Ctrlcharliereg implements ActionListener{
@@ -43,9 +47,6 @@ public class Ctrlcharliereg implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         
-        //FileWriter fw = null;
-        //PrintWriter pw=null;
-        
         if(e.getSource()==frm.btnRegistrarv1){
             try{
                 cl.setNombre(frm.txtNombrev1.getText());
@@ -62,7 +63,7 @@ public class Ctrlcharliereg implements ActionListener{
                   
             }
             }catch(Exception ex){
-                try (FileWriter fw = new FileWriter ("C:\\Users\\ADMIN\\Desktop\\excepciones\\manejoexcp.txt", true);){         
+                try (FileWriter fw = new FileWriter ("C:\\excepciones\\excepciones.txt", true);){         
                     PrintWriter pw = new PrintWriter (fw);
                     pw.println("Error OJO registro "+ex.getMessage());
                     //System.out.println("Error OJO registro");
@@ -91,7 +92,7 @@ public class Ctrlcharliereg implements ActionListener{
             }
             }catch(Exception ex){
                 
-                    try (FileWriter fw = new FileWriter ("C:\\Users\\ADMIN\\Desktop\\excepciones\\manejoexcp.txt", true);){         
+                    try (FileWriter fw = new FileWriter ("C:\\excepciones\\excepciones.txt", true);){         
                     PrintWriter pw = new PrintWriter (fw);
                     pw.println("Error OJO modificar "+ex.getMessage());
                     //System.out.println("Error OJO registro");
@@ -117,7 +118,7 @@ public class Ctrlcharliereg implements ActionListener{
                 }
             }catch(Exception ex){
                 
-                    try (FileWriter fw = new FileWriter ("C:\\Users\\ADMIN\\Desktop\\excepciones\\manejoexcp.txt", true);){         
+                    try (FileWriter fw = new FileWriter ("C:\\excepciones\\excepciones.txt", true);){         
                     PrintWriter pw = new PrintWriter (fw);
                     pw.println("Error OJO al eliminar "+ex.getMessage());
                     //System.out.println("Error OJO registro");
@@ -127,53 +128,6 @@ public class Ctrlcharliereg implements ActionListener{
                 System.out.println("OJO");
                 }
         }
-        
-            
-        
-        /*if(e.getSource()==frm.btnRegistrarv1){
-            cl.setNombre(frm.txtNombrev1.getText());
-            cl.setCelular(Integer.parseInt(frm.txtCelularv1.getText()));
-            cl.setDireccion(frm.txtDireccionv1.getText());
-
-                   
-            if(modC.registrarP(cl)){
-                JOptionPane.showMessageDialog(null, "Registro Guardado");
-                limpiarv1();
-            }else{
-                JOptionPane.showMessageDialog(null, "Error al Guardar");
-                limpiarv1();
-            }
-        }*/
-        
-        /*if(e.getSource()==frm.btnModificarv1){
-            cl.setNombre(frm.txtNombrev1.getText());
-            cl.setCelular(Integer.parseInt(frm.txtCelularv1.getText()));
-            cl.setDireccion(frm.txtDireccionv1.getText());
-           
-            
-            if(modC.modificarP(cl)){
-                JOptionPane.showMessageDialog(null, "Registro Modificado");
-                limpiarv1();
-            }else{
-                JOptionPane.showMessageDialog(null, "Error al Modificar");
-                limpiarv1();
-            }
-        }*/
-        
-        
-        /*if(e.getSource()==frm.btnEliminarv1){
-            cl.setId(Integer.parseInt(frm.txtIdv1.getText()));
-            
-            
-            if(modC.eliminarC(cl)){
-                JOptionPane.showMessageDialog(null, "Registro Eliminado");
-                limpiarv1();
-            }else{
-                JOptionPane.showMessageDialog(null, "Error al Eliminar");
-                limpiarv1();
-            }
-        }
-        */
         
         
         if(e.getSource()==frm.btnBuscarv1){
@@ -206,7 +160,6 @@ public class Ctrlcharliereg implements ActionListener{
                 frm.txtNombrev1.setText(cl.getNombre()); //para pasarlo a string ya que no se puede usar el tostring
                 frm.txtCelularv1.setText(String.valueOf(cl.getCelular()));
                 frm.txtDireccionv1.setText(cl.getDireccion());
-                //JOptionPane.showMessageDialog(null, "Ya está registrado! ");
                 frm.dispose();
                 frm2.txtNombreClientev2.setText(cl.getNombre());
                 frm2.setVisible(true);
