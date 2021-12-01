@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import javax.swing.JOptionPane;
-import java.lang.*;
+//import java.lang.*;
 
 public class Ctrlcharlie implements ActionListener{
     
